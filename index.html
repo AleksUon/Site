@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ShieldFest — Встреча с любимыми стримерами</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ПЕРВЫЙ ЭКРАН С ФОТО -->
+    <section id="about-event" class="hero-section">
+        <div class="hero-bg"></div>
+        
+        <div class="container">
+            <header class="header">
+                <div class="logo">ShieldFest</div>
+                <nav class="nav">
+                    <a href="https://t.me/ShieldFest" class="nav-link nav-link--tg" target="_blank">Telegram-канал</a>
+                    <a href="#" class="nav-link nav-link--accent">Купить билет</a>
+                </nav>
+            </header>
+
+            <main class="main-content">
+                
+                <h1 class="main-title">ShieldFest</h1>
+
+                <div class="event-badge">
+                    <span class="city">Амбер Плаза</span>
+                    <span class="date">1 августа</span>
+                </div>
+                
+                <div class="features">
+                    <span class="feature-item">Встречи со стримерами</span>
+                    <span class="feature-sep">|</span>
+                    <span class="feature-item">Косплей-шоу</span>
+                    <span class="feature-sep">|</span>
+                    <span class="feature-item">Ярмарка мерча</span>
+                    <span class="feature-sep">|</span>
+                    <span class="feature-item">Фотосессии</span>
+                    <span class="feature-sep">|</span>
+                    <span class="feature-item">Автограф-сессии</span>
+                </div>
+                
+
+                <div class="button-wrapper">
+                    <button id="buyTicketBtn" class="cta-button">КУПИТЬ БИЛЕТ</button>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- СЕКЦИЯ: ЧТО ТАКОЕ MINESHIELD FEST -->
+    <section id="about-fest" class="about-section">
+        <div class="about-container">
+            <h2 class="about-title">Что такое ShieldFest</h2>
+            
+            <div class="about-description">
+                <p class="fest-description-text">ShieldFest – это официальная сходка участников Minecraft-сервера MineShield с подписчиками. Отличная возможность провести вместе время: сфотографироваться, получить автограф, познакомиться с такими же зрителями, как и ты.</p>
+            </div>
+
+            <!-- РЕКЛАМА TELEGRAM-КАНАЛА -->
+            <div class="tg-promo">
+                <div class="tg-promo-card">
+                    <a href="https://t.me/ShieldFest" target="_blank" class="tg-promo-link">
+                        <div class="tg-promo-icon">
+                            <img src="images/png-transparent-telegram-computer-icons-facebook-messenger-instant-messaging-diba-triangle-online-chat-android.png" alt="Telegram" class="tg-gif">
+                        </div>
+                        <div class="tg-promo-content">
+                            <span class="tg-promo-title">Наш Telegram-канал</span>
+                            <span class="tg-promo-text">Подпишись, чтобы не пропустить анонсы, расписание и эксклюзивные новости фестиваля!</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СЕКЦИЯ СТРИМЕРОВ -->
+    <section id="streamers" class="streamers-section">
+        <div class="streamers-container">
+            <h2 class="streamers-title">Хедлайнеры</h2>
+
+            <div id="streamersGrid" class="streamers-grid">
+            </div>
+        </div>
+    </section>
+    
+    <section id="activities" class="activities-section">
+        <div class="activities-container">
+
+            <div class="activities-left">
+            <div class="activity active" data-index="0">
+                Пресс-конференция стримеров
+            </div>
+            <div class="activity" data-index="1">
+                Косплей-шоу
+            </div>
+            <div class="activity" data-index="2">
+                Ярмарка авторов
+            </div>
+            <div class="activity" data-index="3">
+                Интерактив
+            </div>
+            <div class="activity" data-index="4">
+                Фотозона
+            </div>
+            </div>
+
+            <div class="activities-right">
+            <img id="activityImage" src="images/activity1.jpg" alt="activity">
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- КАК СТАТЬ ЧАСТЬЮ ФЕСТИВАЛЯ -->
+    <section id="join" class="join-section">
+        <div class="join-container">
+            <h2 class="join-title">Как стать частью фестиваля</h2>
+
+            <div class="join-cards">
+                <article class="join-card join-card--accent join-card--left">
+                    <h3 class="join-card-title">Косплеер</h3>
+                    <p class="join-card-text">
+                        Подавайте заявку на участие в дефиле, показывайте образ,
+                        выступайте на сцене и становитесь частью главного шоу фестиваля.
+                    </p>
+                    <a href="#" class="join-card-button">приём заявок</a>
+                </article>
+
+                <article class="join-card join-card--dark join-card--center">
+                    <h3 class="join-card-title">Гость</h3>
+                    <p class="join-card-text">
+                        Приходите и наслаждайтесь!
+                    </p>
+                    <a href="#" class="join-card-button">Купить билет</a>
+                </article>
+
+                <article class="join-card join-card--accent join-card--right">
+                    <h3 class="join-card-title">Художник</h3>
+                    <p class="join-card-text">
+                        Открываем набор в арт-зону и маркет авторов:
+                        принты, стикеры, открытки, мерч и оригинальные работы.
+                    </p>
+                    <a href="#" class="join-card-button">приём заявок</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+ <!-- МЕСТО И ВРЕМЯ -->
+    <section id="location" class="location-time-section">
+        <div class="location-container">
+            <h2 class="section-title-gold">Место и время</h2>
+            <div class="location-flex">
+                <!-- Левая часть: информация текстом -->
+                <div class="location-info">
+                    <div class="info-block">
+                        <div class="info-label">
+                            <span>ДАТА</span>
+                        </div>
+                        <div class="info-value">
+                            <p>1 августа 2026</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-label">
+                            <span>ВРЕМЯ</span>
+                        </div>
+                        <div class="info-value">
+                            <p>10:00 – 20:00</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-label">
+                            <span>ЛОКАЦИЯ</span>
+                        </div>
+                        <div class="info-value">
+                            <p>Амбер Плаза</p>
+                            <p class="address-detail">Краснопролетарская улица, 36</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-label">
+                            <span>МЕТРО</span>
+                        </div>
+                        <div class="info-value">
+                            <span class="metro-badge">Новослободская</span>
+                        </div>
+                    </div>
+                    <div class="age-warning">
+                        Вход на фестиваль — строго по билетам. Количество мест ограничено. Возрастное ограничение 14+
+                    </div>
+                </div>
+                
+                <!-- Правая часть: Яндекс Карта с точной меткой -->
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://yandex.ru/map-widget/v1/?ll=37.605777%2C55.779995&z=17&pt=37.605777%2C55.779995&whatshere[point]=37.605777%2C55.779995&whatshere[zoom]=17" 
+                        title="Яндекс.Карты — Амбер Плаза, Краснопролетарская 36"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+    <div class="faq-container">
+        <h2 class="faq-title">FAQ</h2>
+        
+        <div class="faq-list">
+            <!-- Вопрос 1 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">•</span>
+                    <span class="faq-question-text">Когда и где состоится ShieldFest?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>1 августа 2026, Москва, «Амбер Плаза», станция метро Новослободская. Ознакомиться с расположением можно по <a href="https://yandex.ru/maps/-/CPrKVI97" target="_blank">ссылке</a>.</p>
+                </div>
+            </div>
+            
+            <!-- Вопрос 2 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">•</span>
+                    <span class="faq-question-text">Где купить билет?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>По ссылке (кассовый оператор).</p>
+                </div>
+            </div>
+            
+            <!-- Вопрос 3 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">•</span>
+                    <span class="faq-question-text">Будет ли меняться цена?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, по мере приближения Фестиваля.</p>
+                </div>
+            </div>
+            
+            <!-- Вопрос 4 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">•</span>
+                    <span class="faq-question-text">Есть возрастные ограничения?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Фактический возраст допуска зрителей на мероприятие составляет 14 лет.</p>
+                </div>
+            </div>
+            
+            <!-- Вопрос 5 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">•</span>
+                    <span class="faq-question-text">Когда будет опубликована программа?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Следите за анонсами на официальных ресурсах ShieldFest.</p>
+                </div>
+            </div>
+            
+            <!-- Вопрос 6 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">•</span>
+                    <span class="faq-question-text">График работы</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>1 августа - с 10:00 до 20:00</p>
+                </div>
+            </div>
+            
+            <!-- Вопрос 7 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">•</span>
+                    <span class="faq-question-text">Что будет на фестивале ради чего стоит отдать деньги?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Мы подготовили разного рода активности: на фестивале будет мерч как МШ, так и АртШилда, косплей-дефиле, розыгрыш с кастомными призами, фотозоны с профессиональными фотографами и возможность получить автограф каждого МайнШилдовца и отдать подарок без поисков в толпе. Некоторые из МШ готовят что-то своё, поэтому не пропускайте анонсы. Список будет пополняться!</p>
+                </div>
+            </div>
+            
+            <!-- Вопрос 8 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">•</span>
+                    <span class="faq-question-text">Возврат билетов</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Информация о возврате билетов будет опубликована позже. Следите за обновлениями.</p>
+                </div>
+            </div>
+            
+            <!-- Вопрос 9 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-icon">•</span>
+                    <span class="faq-question-text">Как стать частью фестиваля?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Участие в маркете или косплей-дефиле рассматривается по заявкам (ссылку). Перед подачей внимательно прочтите условия.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ФУТЕР -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-logo">
+                <div class="footer-logo-text">MineShield Fest</div>
+                <div class="footer-logo-desc">1 августа 2026 | Амбер Плаза</div>
+            </div>
+            
+            <div class="footer-social">
+                <a href="https://t.me/ShieldFest" class="footer-social-link" target="_blank">
+                    <span>Telegram-канал</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-middle">
+            <div class="footer-links">
+                <div class="footer-links-column">
+                    <h4>О фестивале</h4>
+                    <ul>
+                        <li><a href="#about-event">О мероприятии</a></li>
+                        <li><a href="#streamers">Хедлайнеры</a></li>
+                        <li><a href="#activities">Программа</a></li>
+                        <li><a href="#location">Локация</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-column">
+                    <h4>Участникам</h4>
+                    <ul>
+                        <li><a href="#" id="buyTicketFooterLink">Купить билет</a></li>
+                        <li><a href="#join">Как стать частью</a></li>
+                        <li><a href="#join">Косплеерам</a></li>
+                        <li><a href="#join">Художникам</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-column">
+                    <h4>Помощь</h4>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#faq">Возврат билетов</a></li>
+                        <li><a href="#">Правила фестиваля</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                © 2026 ShieldFest. Все права защищены.
+            </div>
+            <div class="footer-policy">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>

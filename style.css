@@ -1,0 +1,1349 @@
+/* ========== ПОДКЛЮЧЕНИЕ ШРИФТОВ ========== */
+@font-face {
+    font-family: 'Minecraft Rus';
+    src: url('fonts/Minecraft.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BlockBlueprint';
+    src: url('fonts/BlockBlueprint.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ========== НОВЫЙ ШРИФТ ДЛЯ ОПИСАНИЯ ФЕСТИВАЛЯ ========== */
+@font-face {
+    font-family: 'LCD8x1Display';
+    src: url('fonts/LCD8x1Display-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ========== БАЗОВЫЕ СТИЛИ ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'LCD8x1Display', 'Minecraft Rus', monospace;  /* Изменено */
+    background: #3d0c0c;
+    overflow-x: hidden;
+}
+
+/* ========== ПЕРВЫЙ ЭКРАН С ФОТО ========== */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/2021-05-02_18.44.27.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(70, 20, 20, 0.85), rgba(40, 10, 10, 0.92));
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    width: 90%;
+    margin: 0 auto;
+    padding: clamp(1rem, 4vw, 3rem) clamp(0.8rem, 3vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ========== ШАПКА ========== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 3vw, 2rem);
+    margin-bottom: clamp(2rem, 6vh, 4rem);
+    padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.2rem, 3vw, 2.5rem);
+    background: rgba(30, 8, 8, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 60px;
+    border-radius: 0px;
+    border-bottom: 3px solid #d4a017;
+    margin-top: auto;
+    border-left: none;
+    border-right: none;
+}
+
+.logo {
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    font-weight: bold;
+    background: linear-gradient(135deg, #e6b422, #ffd966, #b8860b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+}
+
+.nav {
+    display: flex;
+    gap: clamp(1.2rem, 4vw, 3rem);
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #fdeeee;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    font-size: clamp(0.3rem, 3vw, 0.6rem);
+    padding: 0.6rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover {
+    color: #ffd966;
+    border-bottom-color: #d4a017;
+}
+
+.nav-link--accent {
+    background: #d47c17;
+    padding: clamp(0.7rem, 2.5vw, 1rem) clamp(1.2rem, 4vw, 2.5rem);
+    border-radius: 0px;  /* Изменено с 50px на 0px */
+    color: #ffefc0;
+    font-weight: bold;
+    border: none;
+    font-size: clamp(0.5rem, 3.5vw, 0.6rem);
+}
+
+.nav-link--accent:hover {
+    transform: translateY(-2px);
+    background: #f0b322;
+    border-bottom: none;
+}
+
+/* ========== ОСНОВНОЙ КОНТЕНТ ПЕРВОГО ЭКРАНА ========== */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: clamp(1.5rem, 5vh, 3rem) 0;
+    gap: clamp(1.2rem, 3.5vh, 2.5rem);
+}
+
+.event-badge {
+    display: flex;
+    gap: clamp(0.8rem, 2.5vw, 1.5rem);
+    background: rgba(139, 44, 29, 0.7);
+    backdrop-filter: blur(8px);
+    padding: clamp(0.7rem, 2.5vw, 1.1rem) clamp(1.2rem, 5vw, 2.8rem);
+    border-radius: 0px;  /* Изменено с 70px на 0px - квадратная форма */
+    font-size: clamp(0.5rem, 4vw, 1rem);
+    font-weight: bold;
+    border: 2px solid #d4a017;
+    color: #ffefc0;
+}
+
+.city::after {
+    content: "|";
+    margin-left: clamp(0.8rem, 2.5vw, 1.2rem);
+    opacity: 0.7;
+}
+
+.main-title {
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: clamp(3.5rem, 12vw, 7.5rem);
+    font-weight: bold;
+    background: linear-gradient(135deg, #ffdd88, #d4a017);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 3px;
+    line-height: 1.2;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(0.6rem, 2.5vw, 1.3rem) clamp(1rem, 4vw, 2rem);
+    font-size: clamp(0.5rem, 2vw, 0.6rem);
+    font-weight: bold;
+    color: #ffdd99;
+    padding: 0 clamp(0.5rem, 2vw, 0.6rem);
+}
+
+.feature-item {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+@media (max-width: 650px) {
+    .features {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .feature-sep {
+        display: none;
+    }
+    .feature-item {
+        white-space: normal;
+    }
+}
+
+.feature-sep {
+    opacity: 1;
+    color: #d4a017;
+    font-size: 1rem;
+}
+
+.button-wrapper {
+    margin: clamp(1rem, 4vh, 2.5rem) 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cta-button {
+    font-family: 'LCD8x1Display', monospace;
+    background: linear-gradient(100deg, #e69822);
+    border: none;
+    color: #ffefc0;
+    font-size: clamp(0.9rem, 6vw, 0.7rem);
+    font-weight: bold;
+    padding: clamp(1rem, 4vw, 1.6rem) clamp(1.5rem, 7vw, 3.5rem);
+    border-radius: 0px;  /* Изменено с 80px на 0px - квадратная форма */
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 3px;
+    width: auto;
+    min-width: clamp(250px, 60%, 400px);
+    white-space: nowrap;
+}
+
+@media (max-width: 550px) {
+    .cta-button {
+        white-space: normal;
+        min-width: 85%;
+        padding: 1.1rem 1.2rem;
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+}
+
+.cta-button:hover {
+    transform: scale(1.03);
+    background: linear-gradient(100deg, #e28904, #f0b322);
+}
+
+.cta-button:active {
+    transform: scale(0.98);
+}
+
+/* ========== СЕКЦИЯ: ЧТО ТАКОЕ MINESHIELD FEST ========== */
+
+.about-section {
+    background:  #410c0c;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.about-container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.about-title {
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: clamp(2.5rem, 9vw, 5rem);
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(135deg, #ffdd88, #d4a017, #e6b422);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: clamp(2rem, 5vh, 3rem);
+    letter-spacing: 3px;
+}
+
+.about-description {
+    max-width: 1100px;
+    margin: 0 auto clamp(2rem, 5vh, 3.5rem) auto;
+    text-align: center;
+}
+
+.fest-description-text {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 2;
+    color: #f5e0b0;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+.creators-invitation {
+    max-width: 1100px;
+    margin: 0 auto clamp(2rem, 5vh, 3.5rem) auto;
+    text-align: center;
+}
+
+.creators-invitation p {
+    font-size: clamp(1.3rem, 5vw, 2rem);
+    line-height: 1.6;
+    color: #f5e0b0;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+}
+
+/* ========== РЕКЛАМА TELEGRAM КАНАЛА ========== */
+.tg-promo {
+    max-width: 1000px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.tg-promo-card {
+    background: linear-gradient(135deg, rgba(30, 107, 143, 0.15), rgba(30, 107, 143, 0.05));
+    border: 1px solid rgba(42, 139, 184, 0.5);
+    border-radius: 0px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.tg-promo-card:hover {
+    background: linear-gradient(135deg, rgba(30, 107, 143, 0.25), rgba(30, 107, 143, 0.1));
+    border-color: #2a8bb8;
+    transform: scale(1.01);
+}
+
+.tg-promo-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: clamp(1rem, 3vw, 1.5rem) clamp(1.2rem, 4vw, 2rem);
+    text-decoration: none;
+    color: inherit;
+}
+
+.tg-promo-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.tg-promo-title {
+    font-family: 'BlockBlueprint', monospace;
+    font-size: clamp(2rem, 4vw, 1.4rem);
+    font-weight: bold;
+    color: #ffdd99;
+    letter-spacing: 1px;
+}
+
+.tg-promo-text {
+    font-size: clamp(0.5rem, 2vw, 0.8rem);
+    color: #f0dbb4;
+    line-height: 1.4;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 550px) {
+    .tg-promo-link {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .tg-promo-content {
+        text-align: center;
+    }
+    
+    .tg-promo-arrow {
+        display: none;
+    }
+}
+
+/* Стили для гифки вместо эмодзи */
+.tg-gif {
+    width: 200%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.tg-promo-icon {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    background: #2a8bb8;
+    width: clamp(4rem, 6vw, 4rem);
+    height: clamp(4rem, 6vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(42, 139, 184, 0.5);
+    flex-shrink: 0;
+    overflow: hidden;  /* Чтобы гифка не вылезала за пределы круга */
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    .header {
+        border-radius: 50px;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .main-content {
+        gap: 1.5rem;
+    }
+    
+    .roles-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .role-card {
+        max-width: 90%;
+        width: 100%;
+    }
+    
+    .role-button {
+        width: 100%;
+    }
+    
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .cta-button {
+        padding: 1.5rem 4rem;
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 850px) and (orientation: landscape) {
+    .container {
+        min-height: auto;
+        padding: 0.8rem;
+    }
+    
+    .main-content {
+        gap: 0.8rem;
+        margin: 0.5rem 0;
+    }
+    
+    .main-title {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+    }
+    
+    
+    .cta-button {
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 380px) {
+    .event-badge {
+        flex-direction: column;
+        gap: 0.3rem;
+        text-align: center;
+    }
+    
+    .city::after {
+        content: "";
+        display: none;
+    }
+}
+
+
+/* Адаптация для разных размеров экрана */
+@media (max-width: 1200px) {
+    .streamer-card {
+        flex: 0 0 calc(25% - 1.2rem);
+    }
+}
+
+@media (max-width: 900px) {
+    .streamer-card {
+        flex: 0 0 calc(33.33% - 1rem);
+    }
+}
+
+@media (max-width: 600px) {
+    .streamer-card {
+        flex: 0 0 calc(50% - 0.8rem);
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .streamer-card {
+        flex: 0 0 calc(100% - 0rem);
+    }
+}
+
+
+/* ========== СТРИМЕРЫ ========== */
+.streamers-section {
+    padding: 4rem 1rem;
+    background: #410c0c;
+}
+
+.streamers-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.streamers-title {
+    text-align: center;
+    font-family: 'BlockBlueprint';
+    font-size: clamp(2rem, 6vw, 4rem);
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #ffd966, #d4a017);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* сетка */
+.streamers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 3 в ряд */
+    gap: 2.5rem;
+}
+
+/* карточка */
+.streamer-card {
+    width: 100%;
+    background: #000000;
+    text-align: center;
+    padding-bottom: 1.2rem;
+    transition: 0.3s;
+}
+
+.streamer-card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* картинка — увеличили */
+.streamer-img {
+    width: 100%;
+    height: 400px; /* было 320 → стало больше */
+    object-fit: cover;
+}
+
+/* ссылки под картинкой */
+.streamer-links {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.streamer-links a {
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.streamer-links a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1100px) {
+    .streamers-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 в ряд на планшетах */
+    }
+}
+
+@media (max-width: 800px) {
+    .streamers-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 в ряд на маленьких планшетах */
+    }
+}
+
+@media (max-width: 500px) {
+    .streamers-grid {
+        grid-template-columns: 1fr; /* 1 в ряд на телефонах */
+    }
+}
+
+/* ========== СЕКЦИЯ МЕРОПРИЯТИЙ (АКТИВНОСТИ) ========== */
+.activities-section {
+    height: 300vh;
+    position: relative;
+    background: #410c0c;
+}
+
+.activities-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* ЛЕВАЯ ЧАСТЬ - накладываем поверх картинки */
+.activities-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    z-index: 10;
+    background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+    pointer-events: auto;
+}
+
+.activity {
+    font-size: 1.5rem;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    background: rgba(0, 0, 0, 0.349);
+    display: inline-block;
+    width: fit-content;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    border-left: 4px solid transparent;
+}
+
+.activity.active {
+    color: #ffd966;
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(212,160,23,0.5);
+}
+
+/* ПРАВАЯ ЧАСТЬ - картинка на весь экран */
+.activities-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.activities-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    .activities-left {
+        background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
+        justify-content: flex-end;
+        padding-bottom: 4rem;
+        gap: 1rem;
+    }
+    
+    .activity {
+        font-size: 1.2rem;
+        text-align: center;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .activity {
+        font-size: 1rem;
+    }
+}
+
+/* ========== НОВЫЙ РАЗДЕЛ: МЕСТО И ВРЕМЯ (бордовый-золотой) ========== */
+.location-time-section {
+    background: #410c0c;
+    padding: 4rem 2rem;
+}
+
+.location-container {
+   max-width: 1300px;
+   margin: 0 auto;
+}
+
+.section-title-gold {
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: clamp(2.5rem, 7vw, 4.2rem);
+    text-align: center;
+    background: linear-gradient(135deg, #ffdd88, #d4a017, #e6b422);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 3rem;
+    letter-spacing: 3px;
+}
+
+.location-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: stretch;
+}
+
+.location-info {
+    flex: 1.2;
+    background: rgba(20, 5, 5, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid #d4a017;
+    border-radius: 28px;
+    padding: 2rem 2rem 2rem 2.5rem;
+    transition: transform 0.2s;
+}
+
+
+.info-block {
+    margin-bottom: 2rem;
+}
+
+.info-label {
+    font-family: 'BlockBlueprint', monospace;
+    font-size: 3.2rem;
+    color: #d4a017;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-value {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ffefc0;
+    line-height: 1.4;
+    padding-left: 1.8rem;
+}
+
+.info-value p {
+    margin: 0.3rem 0;
+}
+
+.info-value .address-detail {
+    font-size: 1rem;
+    color: #f0dbb4;
+}
+
+
+.age-warning {
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px dashed #d4a017;
+    color: #f0dbb4;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.map-wrapper {
+    flex: 1;
+    min-height: 380px;
+    background: #1f0a0a;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 2px solid #d4a017;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    transition: all 0.2s;
+}
+
+.map-wrapper:hover {
+    border-color: #f5bc3c;
+    box-shadow: 0 0 20px rgba(212, 160, 23, 0.3);
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    display: block;
+    border: none;
+}
+
+@media (max-width: 800px) {
+    .location-flex {
+        flex-direction: column;
+    }
+    .location-info {
+        order: 1;
+    }
+    .map-wrapper {
+        order: 2;
+        min-height: 320px;
+    }
+    .info-value {
+        font-size: 1.1rem;
+    }
+}
+
+/* Адаптация для маленьких */
+@media (max-width: 560px) {
+    .active-preview-title {
+        font-size: 1.8rem;
+    }
+    .activity-menu-item {
+        padding: 0.8rem 1rem;
+    }
+    .location-info {
+        padding: 1.5rem;
+    }
+}
+
+.custom-toast {
+    font-family: 'Minecraft Rus', monospace;
+}
+
+/* ========== НОВЫЙ РАЗДЕЛ: КАК СТАТЬ ЧАСТЬЮ ФЕСТИВАЛЯ ========== */
+.join-section {
+    background: #410c0c;
+    padding: clamp(4rem, 9vw, 7rem) 1.2rem clamp(4.5rem, 10vw, 8rem);
+    overflow: hidden;
+    position: relative;
+}
+
+.join-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 182, 90, 0.08), transparent 28%),
+        radial-gradient(circle at 80% 30%, rgba(255, 182, 90, 0.05), transparent 24%),
+        radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.12), transparent 30%);
+    pointer-events: none;
+}
+
+.join-container {
+    max-width: 1380px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.join-title {
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: clamp(2.5rem, 7vw, 4.2rem);
+    text-align: center;
+    background: linear-gradient(135deg, #ffdd88, #d4a017, #e6b422);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 3rem;
+    letter-spacing: 3px;
+}
+
+.join-cards {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: clamp(1rem, 2.2vw, 1.8rem);
+    padding-top: 0.5rem;
+}
+
+.join-card {
+    width: min(100%, 360px);
+    min-height: 460px;
+    padding: 2.2rem 2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.28);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border-radius: 10px;
+}
+
+.join-card:hover {
+    transform: translateY(-8px) rotate(0deg);
+    box-shadow: 0 28px 55px rgba(0, 0, 0, 0.34);
+}
+
+.join-card--accent {
+    background: #f0954c;
+}
+
+.join-card--dark {
+    background: #a53c48;
+}
+
+.join-card--left {
+    transform: rotate(-6deg) translateY(12px);
+}
+
+.join-card--center {
+    transform: rotate(2deg) translateY(28px);
+}
+
+.join-card--right {
+    transform: rotate(-5deg) translateY(8px);
+}
+
+.join-card-title {
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.1;
+    color: #fff3de;
+    margin-bottom: 1.7rem;
+    letter-spacing: 1px;
+}
+
+.join-card-text {
+    font-size: clamp(0.95rem, 2vw, 1.25rem);
+    line-height: 1.55;
+    color: #fff0db;
+    max-width: 24ch;
+    margin-bottom: 2rem;
+}
+
+.join-card-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    min-width: 210px;
+    padding: 1rem 1.4rem;
+    background: #9f3646;
+    border: 2px solid #f0954c;
+    color: #fff3de;
+    text-decoration: none;
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: clamp(0.95rem, 2.1vw, 1.2rem);
+    letter-spacing: 1px;
+    border-radius: 14px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.join-card-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+}
+
+@media (max-width: 1100px) {
+    .join-cards {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .join-card {
+        width: min(100%, 420px);
+        min-height: 420px;
+    }
+}
+
+@media (max-width: 700px) {
+    .join-title {
+        text-align: center;
+    }
+
+    .join-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .join-card,
+    .join-card--left,
+    .join-card--center,
+    .join-card--right {
+        transform: none;
+    }
+
+    .join-card {
+        min-height: auto;
+        padding: 1.7rem 1.4rem 1.4rem;
+    }
+
+    .join-card-text {
+        max-width: none;
+    }
+
+    .join-card-button {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+/* ========== СЕКЦИЯ FAQ ========== */
+.faq-section {
+    background: #410c0c;
+    padding: 5rem 2rem;
+}
+
+.faq-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.faq-title {
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: clamp(2.5rem, 7vw, 4.2rem);
+    text-align: center;
+    background: linear-gradient(135deg, #ffdd88, #d4a017, #e6b422);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 3rem;
+    letter-spacing: 3px;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.faq-item {
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: #f0b322;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.faq-icon {
+    color: #d4a017;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.faq-question-text {
+    flex: 1;
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: clamp(2rem, 2vw, 1rem);
+    color: #ffefc0;
+    font-weight: bold;
+}
+
+.faq-arrow {
+    color: #d4a017;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-arrow {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    padding: 0 1.5rem;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    border-top: none;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 1.2rem 1.5rem 1.2rem 1.5rem;
+    border-top: 1px solid rgba(212, 160, 23, 0.3);
+}
+
+.faq-answer p {
+    color: #e0c8a0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+    padding-top: 0;
+}
+
+.faq-answer a {
+    color: #d4a017;
+    text-decoration: none;
+    border-bottom: 1px solid #d4a017;
+    transition: color 0.2s;
+}
+
+.faq-answer a:hover {
+    color: #f0b322;
+    border-bottom-color: #f0b322;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .faq-question {
+        padding: 1rem;
+        gap: 0.7rem;
+    }
+    
+    .faq-question-text {
+        font-size: 0.85rem;
+    }
+    
+    .faq-icon {
+        font-size: 1rem;
+    }
+    
+    .faq-answer p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ========== ФУТЕР ========== */
+.footer {
+    background: #1f0606;
+    border-top: 3px solid #d4a017;
+    padding: 3rem 2rem 1.5rem;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+    margin-bottom: 2rem;
+}
+
+.footer-logo-text {
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, #ffdd88, #d4a017);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
+.footer-logo-desc {
+    font-size: 0.85rem;
+    color: #e0c8a0;
+    margin-top: 0.3rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffefc0;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    background: rgba(212, 160, 23, 0.1);
+    border-radius: 40px;
+    border: 1px solid rgba(212, 160, 23, 0.3);
+}
+
+.footer-social-link:hover {
+    background: rgba(212, 160, 23, 0.2);
+    border-color: #d4a017;
+    transform: translateY(-2px);
+}
+
+.social-icon {
+    font-size: 1.2rem;
+}
+
+.footer-middle {
+    padding-bottom: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.footer-links-column {
+    flex: 1;
+    min-width: 140px;
+}
+
+.footer-links-column h4 {
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
+    color: #d4a017;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.footer-links-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-column ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-links-column ul li a {
+    color: #e0c8a0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.footer-links-column ul li a:hover {
+    color: #d4a017;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(212, 160, 23, 0.2);
+}
+
+.footer-copyright {
+    color: #8a6a4a;
+    font-size: 0.8rem;
+}
+
+.footer-policy {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-policy a {
+    color: #8a6a4a;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+}
+
+.footer-policy a:hover {
+    color: #d4a017;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 1.5rem 1rem;
+    }
+    
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-logo-text {
+        font-size: 1.5rem;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .footer-links-column h4 {
+        margin-bottom: 0.5rem;
+    }
+    
+    .footer-links-column ul li {
+        margin-bottom: 0.4rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-policy {
+        justify-content: center;
+    }
+}
+
+/* Плавная прокрутка для якорей */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Отступ сверху, чтобы шапка не перекрывала заголовок */
+}
