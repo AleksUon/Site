@@ -1,0 +1,43 @@
+# Имя нашего процесса
+name: Deploy static site to Pages
+
+# Когда запускать процесс:
+on:
+  push:
+    branches: ["main"]  # 1. При каждом обновлении ветки 'main'
+  workflow_dispatch:   # 2. Или вручную, через кнопку в интерфейсе GitHub
+
+# Разрешаем процессу публиковать сайт
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Запускаем только одну задачу за раз
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Сама задача по публикации
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Загружаем всю папку с кодом (корень репозитория) [citation:7]
+          path: '.'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
