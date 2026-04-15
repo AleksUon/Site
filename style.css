@@ -38,6 +38,70 @@ body {
     overflow-x: hidden;
 }
 
+/* ========== MINECRAFT-КНОПКИ В ТВОИХ ЦВЕТАХ ========== */
+:root {
+    --mc-btn-face-1: #c75a5a;   /* верх кнопки */
+    --mc-btn-face-2: #a53c48;   /* основной цвет */
+    --mc-btn-face-3: #7c2432;   /* низ кнопки */
+    --mc-btn-shadow: #4d121c;   /* внешняя тень */
+    --mc-btn-dark: #5e1a1a;     /* тёмная окантовка */
+    --mc-btn-text: #ffefc0;     /* текст */
+}
+
+.nav-link--accent,
+.cta-button,
+.join-card-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    border-top: 2px solid var(--mc-btn-top);
+    border-left: 2px solid var(--mc-btn-top);
+    border-right: 2px solid var(--mc-btn-dark);
+    border-bottom: 2px solid var(--mc-btn-dark);
+    background:
+        linear-gradient(
+            to bottom,
+            var(--mc-btn-face-1) 0%,
+            var(--mc-btn-face-1) 8%,
+            var(--mc-btn-face-2) 8%,
+            var(--mc-btn-face-2) 82%,
+            var(--mc-btn-face-3) 82%,
+            var(--mc-btn-face-3) 100%
+        );
+    color: var(--mc-btn-text);
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.45);
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.18),
+        inset -1px -1px 0 rgba(0, 0, 0, 0.25),
+        0 4px 0 var(--mc-btn-shadow);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.15s ease;
+}
+
+.nav-link--accent:hover,
+.cta-button:hover,
+.join-card-button:hover {
+    transform: translateY(1px);
+    filter: brightness(1.06);
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.2),
+        inset -1px -1px 0 rgba(0, 0, 0, 0.28),
+        0 3px 0 var(--mc-btn-shadow);
+}
+
+.nav-link--accent:active,
+.cta-button:active,
+.join-card-button:active {
+    transform: translateY(4px);
+    box-shadow:
+        inset 1px 1px 0 rgba(255, 255, 255, 0.12),
+        inset -1px -1px 0 rgba(0, 0, 0, 0.3),
+        0 0 0 var(--mc-btn-shadow);
+}
+
 /* ========== ПЕРВЫЙ ЭКРАН С ФОТО ========== */
 .hero-section {
     position: relative;
@@ -135,19 +199,11 @@ body {
 }
 
 .nav-link--accent {
-    background: #d47c17;
-    padding: clamp(0.7rem, 2.5vw, 1rem) clamp(1.2rem, 4vw, 2.5rem);
-    border-radius: 0px;  /* Изменено с 50px на 0px */
-    color: #ffefc0;
+    padding: clamp(0.75rem, 2.5vw, 1rem) clamp(1.4rem, 4vw, 2.5rem);
+    font-family: 'LCD8x1Display', 'Minecraft Rus', monospace;
     font-weight: bold;
-    border: none;
-    font-size: clamp(0.5rem, 3.5vw, 0.6rem);
-}
-
-.nav-link--accent:hover {
-    transform: translateY(-2px);
-    background: #f0b322;
-    border-bottom: none;
+    font-size: clamp(0.58rem, 3.5vw, 0.72rem);
+    letter-spacing: 1px;
 }
 
 /* ========== ОСНОВНОЙ КОНТЕНТ ПЕРВОГО ЭКРАНА ========== */
@@ -236,17 +292,12 @@ body {
 }
 
 .cta-button {
-    font-family: 'LCD8x1Display', monospace;
-    background: linear-gradient(100deg, #e69822);
-    border: none;
-    color: #ffefc0;
-    font-size: clamp(0.9rem, 6vw, 0.7rem);
+    font-family: 'LCD8x1Display', 'Minecraft Rus', monospace;
+    font-size: clamp(0.9rem, 6vw, 0.95rem);
     font-weight: bold;
-    padding: clamp(1rem, 4vw, 1.6rem) clamp(1.5rem, 7vw, 3.5rem);
-    border-radius: 0px;  /* Изменено с 80px на 0px - квадратная форма */
+    padding: clamp(1rem, 4vw, 1.4rem) clamp(1.5rem, 7vw, 3.5rem);
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     width: auto;
     min-width: clamp(250px, 60%, 400px);
     white-space: nowrap;
@@ -263,8 +314,8 @@ body {
 }
 
 .cta-button:hover {
-    transform: scale(1.03);
-    background: linear-gradient(100deg, #e28904, #f0b322);
+    color: #ffd966;
+    border-bottom-color: #d4a017;
 }
 
 .cta-button:active {
@@ -559,7 +610,7 @@ body {
 /* сетка */
 .streamers-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 3 в ряд */
+    grid-template-columns: repeat(3, 1fr); /* 3 в ряд */
     gap: 2.5rem;
 }
 
@@ -579,7 +630,7 @@ body {
 /* картинка — увеличили */
 .streamer-img {
     width: 100%;
-    height: 400px; /* было 320 → стало больше */
+    height: 450px; /* было 320 → стало больше */
     object-fit: cover;
 }
 
@@ -621,7 +672,7 @@ body {
 
 /* ========== СЕКЦИЯ МЕРОПРИЯТИЙ (АКТИВНОСТИ) ========== */
 .activities-section {
-    height: 300vh;
+    height: 450vh; /* было 300vh */
     position: relative;
     background: #410c0c;
 }
@@ -669,6 +720,11 @@ body {
     border-left: 4px solid transparent;
 }
 
+.activity:hover {
+    color: #ffd966;
+    transform: translateX(8px);
+    background: rgba(0, 0, 0, 0.5);
+}
 .activity.active {
     color: #ffd966;
     transform: scale(1.05);
@@ -907,9 +963,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center; /* центрируем содержимое карточки */
     box-shadow: 0 22px 45px rgba(0, 0, 0, 0.28);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    border-radius: 10px;
+    border-radius: 0px;
 }
 
 .join-card:hover {
@@ -938,43 +995,39 @@ body {
 }
 
 .join-card-title {
-    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    line-height: 1.1;
+    font-family: 'LCD8x1Display', 'Minecraft Rus', monospace; /* шрифты поменяли местами */
+    font-size: clamp(1.6rem, 3vw, 1rem);
+    line-height: 1.15;
     color: #fff3de;
-    margin-bottom: 1.7rem;
+    margin-bottom: 1.2rem;
     letter-spacing: 1px;
+    text-align: center;   /* заголовок по центру */
+    width: 100%;
 }
 
 .join-card-text {
-    font-size: clamp(0.95rem, 2vw, 1.25rem);
-    line-height: 1.55;
+    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace; /* шрифты поменяли местами */
+    font-size: clamp(2rem, 1.2vw, 2rem); /* описание меньше кегелем */
+    line-height: 1.5;
     color: #fff0db;
-    max-width: 24ch;
+    max-width: none;      /* можно растянуть на всю ширину */
+    width: 100%;
     margin-bottom: 2rem;
+    text-align: center;   /* описание по центру */
 }
 
 .join-card-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     align-self: flex-start;
     min-width: 210px;
     padding: 1rem 1.4rem;
-    background: #9f3646;
-    border: 2px solid #f0954c;
-    color: #fff3de;
-    text-decoration: none;
-    font-family: 'BlockBlueprint', 'Minecraft Rus', monospace;
-    font-size: clamp(0.95rem, 2.1vw, 1.2rem);
+    font-family: 'LCD8x1Display', 'Minecraft Rus', monospace;
+    font-size: clamp(0.82rem, 2vw, 0.95rem);
     letter-spacing: 1px;
-    border-radius: 14px;
-    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .join-card-button:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.06);
+    color: #ffd966;
+    border-bottom-color: #d4a017;
 }
 
 @media (max-width: 1100px) {
@@ -1086,7 +1139,7 @@ body {
 
 .faq-arrow {
     color: #d4a017;
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     transition: transform 0.3s ease;
 }
 

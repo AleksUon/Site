@@ -82,9 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const streamers = [
     { name: "Alcest_M", img: "ALCEST_M.jpg", twitch: "https://www.twitch.tv/alcest_m", tg: "https://t.me/alcest_m" },
     { name: "Alfedov", img: "Alfedov.jpg", twitch: "https://www.twitch.tv/alfedov", tg: "https://t.me/alfedovgroup" },
+    { name: "BarisGold", img: "BarisGold.jpg", twitch: "https://www.twitch.tv/barsigold", tg: "https://t.me/barsigold" },
     { name: "Bez_LS", img: "Bez_LS.jpg", twitch: "https://www.twitch.tv/bez_ls", tg: "https://t.me/bez_ls" },
     { name: "CapXenomorph", img: "CapXenomorph.jpg", twitch: "https://www.twitch.tv/capxenomorph", tg: "https://t.me/capxen" },
     { name: "DEB", img: "DEB.jpg", twitch: "https://www.twitch.tv/deb_off", tg: "https://t.me/debanimation" },
+    { name: "Dushenka", img: "Dushenka.jpg", twitch: "https://www.twitch.tv/dushenka", tg: "https://t.me/tdushenka" },
     { name: "Gel_mo", img: "Gel_mo.jpg", twitch: "https://m.twitch.tv/gelmoo", tg: "https://t.me/gelmoshka" },
     { name: "HeO", img: "HeO.jpg", twitch: "https://www.twitch.tv/heo_3km", tg: "https://t.me/heo_3km" },
     { name: "Jay Pokerman", img: "jay-pokerman.jpg", twitch: "https://www.twitch.tv/jaypokerman" },
@@ -138,8 +140,9 @@ if (grid) {
     });
 });
 
-const activities = document.querySelectorAll('.activity');
+const activities = [...document.querySelectorAll('.activity')];
 const image = document.getElementById('activityImage');
+const section = document.querySelector('.activities-section');
 
 const images = [
     "images/Konf.jpg",
@@ -149,49 +152,79 @@ const images = [
     "images/Photo.jpg"
 ];
 
-let currentIndex = -1; // Храним текущий индекс, чтобы не обновлять лишний раз
-let isUpdating = false; // Флаг для предотвращения множественных обновлений
+const MOBILE_BREAKPOINT = 768;
+let currentIndex = 0;
+let ticking = false;
 
-function updateActivityByScroll() {
-    const section = document.querySelector('.activities-section');
-    if (!section) return;
+function isMobileActivities() {
+    return window.innerWidth <= MOBILE_BREAKPOINT;
+}
 
-    const rect = section.getBoundingClientRect();
-    const sectionHeight = section.offsetHeight;
-    const windowHeight = window.innerHeight;
-    
-    // Прогресс скролла: 0 когда секция только появилась, 1 когда полностью ушла
-    let scrollProgress = (window.scrollY - section.offsetTop) / (sectionHeight - windowHeight);
-    scrollProgress = Math.max(0, Math.min(1, scrollProgress));
-    
-    let newIndex = Math.floor(scrollProgress * activities.length);
-    if (newIndex >= activities.length) newIndex = activities.length - 1;
-    if (newIndex < 0) newIndex = 0;
-    
-    // Обновляем только если индекс изменился
-    if (newIndex !== currentIndex) {
-        currentIndex = newIndex;
-        
-        // Обновляем активный класс
-        activities.forEach(el => el.classList.remove('active'));
-        if (activities[currentIndex]) {
-            activities[currentIndex].classList.add('active');
-        }
-        
-        // Обновляем картинку только если она реально изменилась
-        if (image && images[currentIndex] && image.src !== window.location.origin + '/' + images[currentIndex]) {
-            image.style.opacity = 0;
-            setTimeout(() => {
-                image.src = images[currentIndex];
-                image.style.opacity = 1;
-            }, 150);
-        }
+function setActiveActivity(index) {
+    if (!activities.length || !image) return;
+    if (index < 0 || index >= activities.length) return;
+
+    currentIndex = index;
+
+    activities.forEach((el, i) => {
+        el.classList.toggle('active', i === currentIndex);
+    });
+
+    const nextSrc = images[currentIndex];
+    if (!nextSrc) return;
+
+    if (!image.src.includes(nextSrc)) {
+        image.style.opacity = 0;
+        setTimeout(() => {
+            image.src = nextSrc;
+            image.style.opacity = 1;
+        }, 150);
     }
 }
 
-// Используем requestAnimationFrame для плавности и предотвращения лишних вызовов
-let ticking = false;
+function updateActivityByScroll() {
+    if (isMobileActivities() || !section || !activities.length) return;
+
+    const sectionHeight = section.offsetHeight;
+    const windowHeight = window.innerHeight;
+    const maxScrollable = sectionHeight - windowHeight;
+
+    if (maxScrollable <= 0) {
+        setActiveActivity(0);
+        return;
+    }
+
+    let scrollProgress = (window.scrollY - section.offsetTop) / maxScrollable;
+    scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+
+    let newIndex = Math.floor(scrollProgress * activities.length);
+    if (newIndex >= activities.length) newIndex = activities.length - 1;
+
+    if (newIndex !== currentIndex) {
+        setActiveActivity(newIndex);
+    }
+}
+
+activities.forEach((activity, index) => {
+    activity.addEventListener('click', () => {
+        setActiveActivity(index);
+
+        if (isMobileActivities() || !section) return;
+
+        const maxScroll = section.offsetHeight - window.innerHeight;
+        const segmentHeight = maxScroll / activities.length;
+        const targetY = section.offsetTop + (segmentHeight * index) + (segmentHeight / 2);
+
+        window.scrollTo({
+            top: targetY,
+            behavior: 'smooth'
+        });
+    });
+});
+
 window.addEventListener('scroll', () => {
+    if (isMobileActivities()) return;
+
     if (!ticking) {
         requestAnimationFrame(() => {
             updateActivityByScroll();
@@ -201,8 +234,15 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Запускаем при загрузке
+window.addEventListener('resize', () => {
+    if (isMobileActivities()) {
+        setActiveActivity(currentIndex);
+    } else {
+        updateActivityByScroll();
+    }
+});
+
 setTimeout(() => {
+    setActiveActivity(0);
     updateActivityByScroll();
 }, 100);
-
