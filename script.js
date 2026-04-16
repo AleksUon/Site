@@ -143,6 +143,8 @@ if (grid) {
 const activities = [...document.querySelectorAll('.activity')];
 const image = document.getElementById('activityImage');
 const section = document.querySelector('.activities-section');
+const activitiesPanel = document.querySelector('.activities-left');
+const activityImageArea = document.querySelector('.activities-right');
 
 const images = [
     "images/Konf.jpg",
@@ -155,9 +157,21 @@ const images = [
 const MOBILE_BREAKPOINT = 768;
 let currentIndex = 0;
 let ticking = false;
+let touchStartX = 0;
+let touchDeltaX = 0;
 
 function isMobileActivities() {
     return window.innerWidth <= MOBILE_BREAKPOINT;
+}
+
+function keepActiveTabVisible() {
+    if (!isMobileActivities() || !activitiesPanel || !activities[currentIndex]) return;
+
+    activities[currentIndex].scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest'
+    });
 }
 
 function setActiveActivity(index) {
@@ -180,6 +194,8 @@ function setActiveActivity(index) {
             image.style.opacity = 1;
         }, 150);
     }
+
+    keepActiveTabVisible();
 }
 
 function updateActivityByScroll() {
@@ -203,6 +219,32 @@ function updateActivityByScroll() {
     if (newIndex !== currentIndex) {
         setActiveActivity(newIndex);
     }
+}
+
+function setupMobileActivitySwipe() {
+    if (!activityImageArea) return;
+
+    activityImageArea.addEventListener('touchstart', (event) => {
+        if (!isMobileActivities()) return;
+        touchStartX = event.touches[0].clientX;
+        touchDeltaX = 0;
+    }, { passive: true });
+
+    activityImageArea.addEventListener('touchmove', (event) => {
+        if (!isMobileActivities()) return;
+        touchDeltaX = event.touches[0].clientX - touchStartX;
+    }, { passive: true });
+
+    activityImageArea.addEventListener('touchend', () => {
+        if (!isMobileActivities()) return;
+        if (Math.abs(touchDeltaX) < 40) return;
+
+        if (touchDeltaX < 0) {
+            setActiveActivity(Math.min(currentIndex + 1, activities.length - 1));
+        } else {
+            setActiveActivity(Math.max(currentIndex - 1, 0));
+        }
+    });
 }
 
 activities.forEach((activity, index) => {
@@ -241,6 +283,8 @@ window.addEventListener('resize', () => {
         updateActivityByScroll();
     }
 });
+
+setupMobileActivitySwipe();
 
 setTimeout(() => {
     setActiveActivity(0);

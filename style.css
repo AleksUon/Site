@@ -407,7 +407,7 @@ body {
 .tg-promo-link {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: clamp(0.9rem, 2.5vw, 1.4rem);
     padding: clamp(1rem, 3vw, 1.5rem) clamp(1.2rem, 4vw, 2rem);
     text-decoration: none;
     color: inherit;
@@ -415,35 +415,46 @@ body {
 
 .tg-promo-content {
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.45rem;
 }
 
 .tg-promo-title {
     font-family: 'BlockBlueprint', monospace;
-    font-size: clamp(2rem, 4vw, 1.4rem);
+    font-size: clamp(1.2rem, 2.6vw, 1.9rem);
     font-weight: bold;
     color: #ffdd99;
     letter-spacing: 1px;
+    line-height: 1.15;
 }
 
 .tg-promo-text {
-    font-size: clamp(0.5rem, 2vw, 0.8rem);
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
     color: #f0dbb4;
-    line-height: 1.4;
+    line-height: 1.45;
 }
-
-/* Адаптация для мобильных */
 @media (max-width: 550px) {
     .tg-promo-link {
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: center;
         text-align: center;
+        gap: 0.9rem;
+        padding: 1rem;
     }
-    
+
     .tg-promo-content {
         text-align: center;
+    }
+
+    .tg-promo-title {
+        font-size: 1.05rem;
+    }
+
+    .tg-promo-text {
+        font-size: 0.72rem;
+        line-height: 1.5;
     }
     
     .tg-promo-arrow {
@@ -451,26 +462,26 @@ body {
     }
 }
 
-/* Стили для гифки вместо эмодзи */
-.tg-gif {
-    width: 200%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
 .tg-promo-icon {
-    font-size: clamp(2rem, 6vw, 2.8rem);
-    background: #2a8bb8;
-    width: clamp(4rem, 6vw, 4rem);
-    height: clamp(4rem, 6vw, 4rem);
+    width: clamp(4.2rem, 9vw, 5rem);
+    height: clamp(4.2rem, 9vw, 5rem);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    box-shadow: 0 0 15px rgba(42, 139, 184, 0.5);
     flex-shrink: 0;
-    overflow: hidden;  /* Чтобы гифка не вылезала за пределы круга */
+    overflow: hidden;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.tg-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    padding: 0;
+    border-radius: 0;
 }
 
 /* Адаптация для мобильных */
@@ -610,28 +621,32 @@ body {
 /* сетка */
 .streamers-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 в ряд */
-    gap: 2.5rem;
+    grid-template-columns: repeat(3, minmax(240px, 320px));
+    justify-content: center;
+    gap: clamp(1.2rem, 2vw, 2.2rem);
 }
 
-/* карточка */
 .streamer-card {
     width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
     background: #000000;
     text-align: center;
     padding-bottom: 1.2rem;
     transition: 0.3s;
+    overflow: hidden;
 }
 
 .streamer-card:hover {
     transform: translateY(-10px) scale(1.02);
 }
 
-/* картинка — увеличили */
 .streamer-img {
     width: 100%;
-    height: 450px; /* было 320 → стало больше */
+    aspect-ratio: 3 / 4.25;
+    height: auto;
     object-fit: cover;
+    display: block;
 }
 
 /* ссылки под картинкой */
@@ -654,19 +669,19 @@ body {
 
 @media (max-width: 1100px) {
     .streamers-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 в ряд на планшетах */
+        grid-template-columns: repeat(3, minmax(210px, 1fr));
     }
 }
 
 @media (max-width: 800px) {
     .streamers-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 в ряд на маленьких планшетах */
+        grid-template-columns: repeat(2, minmax(190px, 1fr));
     }
 }
 
 @media (max-width: 500px) {
     .streamers-grid {
-        grid-template-columns: 1fr; /* 1 в ряд на телефонах */
+        grid-template-columns: minmax(0, 320px);
     }
 }
 
@@ -750,30 +765,81 @@ body {
 
 /* Адаптация для мобильных устройств */
 @media (max-width: 768px) {
-    .activities-left {
-        background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
-        justify-content: flex-end;
-        padding-bottom: 4rem;
-        gap: 1rem;
+    .activities-section {
+        height: auto;
+        padding: 1.5rem 1rem 0;
     }
-    
+
+    .activities-container {
+        position: relative;
+        top: auto;
+        height: auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        overflow: visible;
+    }
+
+    .activities-right {
+        position: relative;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+        border: 1px solid rgba(212, 160, 23, 0.5);
+        overflow: hidden;
+    }
+
+    .activities-left {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 0.75rem;
+        padding: 0 0 0.5rem;
+        background: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
     .activity {
-        font-size: 1.2rem;
+        font-size: 0.95rem;
         text-align: center;
-        padding: 0.5rem;
+        padding: 0.7rem 0.9rem;
+        min-width: max-content;
+        white-space: nowrap;
+        flex: 0 0 auto;
+    }
+
+    .activity:hover {
+        transform: none;
+    }
+
+    .activity.active {
+        transform: none;
+        border-left-color: #d4a017;
     }
 }
 
 @media (max-width: 480px) {
+    .activities-section {
+        padding-inline: 0.75rem;
+    }
+
     .activity {
-        font-size: 1rem;
+        font-size: 0.88rem;
     }
 }
 
 /* ========== НОВЫЙ РАЗДЕЛ: МЕСТО И ВРЕМЯ (бордовый-золотой) ========== */
 .location-time-section {
     background: #410c0c;
-    padding: 4rem 2rem;
+    padding: 4rem clamp(1rem, 3vw, 2rem);
 }
 
 .location-container {
@@ -798,10 +864,14 @@ body {
     flex-wrap: wrap;
     gap: 2.5rem;
     align-items: stretch;
+    min-width: 0;
 }
 
 .location-info {
     flex: 1.2;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
     background: rgba(20, 5, 5, 0.7);
     backdrop-filter: blur(8px);
     border: 1px solid #d4a017;
@@ -810,19 +880,19 @@ body {
     transition: transform 0.2s;
 }
 
-
 .info-block {
     margin-bottom: 2rem;
 }
 
 .info-label {
     font-family: 'BlockBlueprint', monospace;
-    font-size: 3.2rem;
+    font-size: clamp(2rem, 4.4vw, 3.2rem);
     color: #d4a017;
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
     gap: 10px;
+    line-height: 1;
 }
 
 .info-value {
@@ -830,7 +900,10 @@ body {
     font-weight: bold;
     color: #ffefc0;
     line-height: 1.4;
-    padding-left: 1.8rem;
+    padding-left: 1.2rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .info-value p {
@@ -841,7 +914,6 @@ body {
     font-size: 1rem;
     color: #f0dbb4;
 }
-
 
 .age-warning {
     margin-top: 2rem;
@@ -855,6 +927,7 @@ body {
 
 .map-wrapper {
     flex: 1;
+    min-width: 0;
     min-height: 380px;
     background: #1f0a0a;
     border-radius: 28px;
@@ -881,28 +954,53 @@ body {
     .location-flex {
         flex-direction: column;
     }
+
     .location-info {
         order: 1;
     }
+
     .map-wrapper {
         order: 2;
         min-height: 320px;
     }
+
     .info-value {
         font-size: 1.1rem;
     }
 }
 
-/* Адаптация для маленьких */
 @media (max-width: 560px) {
-    .active-preview-title {
-        font-size: 1.8rem;
+    .location-time-section {
+        padding: 3rem 1rem;
     }
-    .activity-menu-item {
-        padding: 0.8rem 1rem;
-    }
+
     .location-info {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        border-radius: 20px;
+    }
+
+    .info-block {
+        margin-bottom: 1.4rem;
+    }
+
+    .info-label {
+        font-size: 1.7rem;
+    }
+
+    .info-value {
+        font-size: 0.95rem;
+        padding-left: 0;
+    }
+
+    .age-warning {
+        font-size: 0.82rem;
+        line-height: 1.45;
+    }
+
+    .map-wrapper,
+    .map-wrapper iframe {
+        min-height: 280px;
+        border-radius: 20px;
     }
 }
 
@@ -922,10 +1020,6 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(255, 182, 90, 0.08), transparent 28%),
-        radial-gradient(circle at 80% 30%, rgba(255, 182, 90, 0.05), transparent 24%),
-        radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.12), transparent 30%);
     pointer-events: none;
 }
 
