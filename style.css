@@ -227,7 +227,6 @@ body {
     border-radius: 0px;  /* Изменено с 70px на 0px - квадратная форма */
     font-size: clamp(0.5rem, 4vw, 1rem);
     font-weight: bold;
-    border: 2px solid #d4a017;
     color: #ffefc0;
 }
 
